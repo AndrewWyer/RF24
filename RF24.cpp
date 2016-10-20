@@ -1158,7 +1158,7 @@ void RF24::openReadingPipe(uint8_t child, uint64_t address)
     memcpy(pipe0_reading_address,&address,addr_width);
   }
 
-  if (child <= 6)
+  if (child <= MAX_NUMBER_PIPES)
   {
     // For pipes 2-5, only write the LSB
     if ( child < 2 )
@@ -1195,7 +1195,7 @@ void RF24::openReadingPipe(uint8_t child, const uint8_t *address)
   if (child == 0){
     memcpy(pipe0_reading_address,address,addr_width);
   }
-  if (child <= 6)
+  if (child <= MAX_NUMBER_PIPES)
   {
     // For pipes 2-5, only write the LSB
     if ( child < 2 ){
@@ -1345,7 +1345,7 @@ void RF24::setAutoAck(bool enable)
 
 void RF24::setAutoAck( uint8_t pipe, bool enable )
 {
-  if ( pipe <= 6 )
+  if ( pipe <= MAX_NUMBER_PIPES )
   {
     uint8_t en_aa = read_register( EN_AA ) ;
     if( enable )
